@@ -1,0 +1,90 @@
+{
+  "pricing": {
+    "credit_per_usd": 0.02
+  },
+  "workflows": [
+    {
+      "id": "basic-sdr",
+      "name": "Basic SDR (Email Only)",
+      "description": "Simple email outreach with basic personalization",
+      "actions": [
+        {
+          "action": "Email Generation",
+          "credits_per_unit": 1,
+          "description": "AI-generated personalized emails"
+        },
+        {
+          "action": "Follow-up Email",
+          "credits_per_unit": 1,
+          "description": "Automated follow-up sequences"
+        }
+      ]
+    },
+    {
+      "id": "standard-sdr",
+      "name": "Standard SDR (Email + Research)",
+      "description": "Enhanced outreach with prospect research and personalization",
+      "actions": [
+        {
+          "action": "AI Research",
+          "credits_per_unit": 2,
+          "description": "Deep prospect and company research"
+        },
+        {
+          "action": "Email Generation",
+          "credits_per_unit": 1,
+          "description": "Research-informed personalized emails"
+        },
+        {
+          "action": "Follow-up Email",
+          "credits_per_unit": 1,
+          "description": "Contextual follow-up sequences"
+        }
+      ]
+    },
+    {
+      "id": "premium-sdr",
+      "name": "Premium SDR (Full Service)",
+      "description": "Complete outreach with research, emails, and voice calls",
+      "actions": [
+        {
+          "action": "AI Research",
+          "credits_per_unit": 2,
+          "description": "Comprehensive prospect intelligence"
+        },
+        {
+          "action": "Email Generation",
+          "credits_per_unit": 1,
+          "description": "Highly personalized email content"
+        },
+        {
+          "action": "Voice Call Script",
+          "credits_per_unit": 3,
+          "description": "AI-generated call scripts and talking points"
+        },
+        {
+          "action": "Follow-up Sequence",
+          "credits_per_unit": 2,
+          "description": "Multi-channel follow-up coordination"
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "Small Campaign",
+      "prospects": 100,
+      "emails_per_prospect": 2
+    },
+    {
+      "name": "Medium Campaign",
+      "prospects": 500,
+      "emails_per_prospect": 3
+    },
+    {
+      "name": "Large Campaign",
+      "prospects": 1000,
+      "emails_per_prospect": 4
+    }
+  ]
+}
