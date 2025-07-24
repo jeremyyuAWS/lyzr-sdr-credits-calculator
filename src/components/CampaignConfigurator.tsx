@@ -64,7 +64,7 @@ export function CampaignConfigurator({
         <div className="space-y-6">
           <Card className="rounded-2xl shadow-lg border-0">
             <CardHeader className="pb-4">
-              <CardTitle className="flex items-center space-x-2 text-xl text-black">{
+              <CardTitle className="flex items-center space-x-2 text-xl text-black">
                 <Users className="w-5 h-5" />
                 <span>Workflow Settings</span>
               </CardTitle>
