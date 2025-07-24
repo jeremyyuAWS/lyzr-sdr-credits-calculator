@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { CheckCircle, ArrowLeft, Download } from 'lucide-react';
 
 interface CostSummaryProps {
+  useCaseName: string;
   workflowName: string;
   prospects: number;
   emailsPerProspect: number;
@@ -13,7 +14,7 @@ interface CostSummaryProps {
   onBack: () => void;
 }
 
-export function CostSummary({ workflowName, prospects, emailsPerProspect, totalCredits, totalUsd, onBack }: CostSummaryProps) {
+export function CostSummary({ useCaseName, workflowName, prospects, emailsPerProspect, totalCredits, totalUsd, onBack }: CostSummaryProps) {
   const costPerProspect = totalUsd / prospects;
   const totalEmails = prospects * emailsPerProspect;
 
@@ -26,7 +27,7 @@ export function CostSummary({ workflowName, prospects, emailsPerProspect, totalC
           </div>
         </div>
         <h2 className="text-3xl font-bold text-black">Campaign Summary</h2>
-        <p className="text-gray-600 text-lg">Your {workflowName.toLowerCase()} campaign is ready to launch</p>
+        <p className="text-gray-600 text-lg">Your {useCaseName} - {workflowName.toLowerCase()} is ready to launch</p>
       </div>
 
       <Card className="rounded-2xl shadow-lg border-0 bg-gradient-to-br from-gray-50 to-white">
@@ -38,7 +39,7 @@ export function CostSummary({ workflowName, prospects, emailsPerProspect, totalC
             <div className="space-y-4">
               <div className="p-4 bg-white rounded-xl border">
                 <h4 className="font-medium text-gray-600 mb-2">Campaign Type</h4>
-                <p className="text-lg font-semibold text-black">{workflowName}</p>
+                <p className="text-lg font-semibold text-black">{useCaseName} - {workflowName}</p>
               </div>
               
               <div className="p-4 bg-white rounded-xl border">

@@ -40,7 +40,12 @@ export function CampaignConfigurator({
 }: CampaignConfiguratorProps) {
   const totalCredits = selectedWorkflow.actions.reduce((sum, action) => {
     let multiplier = prospects;
-    if (action.action.toLowerCase().includes('email') || action.action.toLowerCase().includes('follow-up')) {
+    // For certain actions, multiply by number of emails/interactions
+    if (action.action.toLowerCase().includes('email') || 
+        action.action.toLowerCase().includes('follow-up') ||
+        action.action.toLowerCase().includes('social media') ||
+        action.action.toLowerCase().includes('query') ||
+        action.action.toLowerCase().includes('response')) {
       multiplier = prospects * emailsPerProspect;
     }
     return sum + (action.credits_per_unit * multiplier);
@@ -52,22 +57,22 @@ export function CampaignConfigurator({
     <div className="space-y-8">
       <div className="text-center space-y-2">
         <h2 className="text-3xl font-bold text-black">Configure Your Campaign</h2>
-        <p className="text-gray-600 text-lg">Fine-tune your {selectedWorkflow.name.toLowerCase()} parameters</p>
+        <p className="text-gray-600 text-lg">Fine-tune your workflow parameters</p>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="space-y-6">
           <Card className="rounded-2xl shadow-lg border-0">
             <CardHeader className="pb-4">
-              <CardTitle className="flex items-center space-x-2 text-xl text-black">
+              <CardTitle className="flex items-center space-x-2 text-xl text-black">{
                 <Users className="w-5 h-5" />
-                <span>Campaign Settings</span>
+                <span>Workflow Settings</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-8">
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <label className="text-sm font-medium text-black">Number of Prospects</label>
+                  <label className="text-sm font-medium text-black">Volume/Scale</label>
                   <Badge variant="outline" className="font-mono text-lg px-3 py-1">
                     {prospects.toLocaleString()}
                   </Badge>
@@ -89,7 +94,7 @@ export function CampaignConfigurator({
 
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <label className="text-sm font-medium text-black">Emails per Prospect</label>
+                  <label className="text-sm font-medium text-black">Interactions per Unit</label>
                   <Badge variant="outline" className="font-mono text-lg px-3 py-1">
                     {emailsPerProspect}
                   </Badge>
@@ -112,17 +117,17 @@ export function CampaignConfigurator({
               <div className="grid grid-cols-3 gap-4 pt-4 border-t">
                 <div className="text-center p-3 bg-blue-50 rounded-xl">
                   <Mail className="w-5 h-5 mx-auto mb-1 text-blue-600" />
-                  <p className="text-xs text-blue-600 font-medium">TOTAL EMAILS</p>
+                  <p className="text-xs text-blue-600 font-medium">TOTAL ACTIONS</p>
                   <p className="text-lg font-bold text-blue-800">{(prospects * emailsPerProspect).toLocaleString()}</p>
                 </div>
                 <div className="text-center p-3 bg-green-50 rounded-xl">
                   <TrendingUp className="w-5 h-5 mx-auto mb-1 text-green-600" />
-                  <p className="text-xs text-green-600 font-medium">EST. RESPONSES</p>
+                  <p className="text-xs text-green-600 font-medium">EST. SUCCESS</p>
                   <p className="text-lg font-bold text-green-800">{Math.round(prospects * 0.2)}</p>
                 </div>
                 <div className="text-center p-3 bg-purple-50 rounded-xl">
                   <Users className="w-5 h-5 mx-auto mb-1 text-purple-600" />
-                  <p className="text-xs text-purple-600 font-medium">EST. MEETINGS</p>
+                  <p className="text-xs text-purple-600 font-medium">EST. OUTCOMES</p>
                   <p className="text-lg font-bold text-purple-800">{Math.round(prospects * 0.05)}</p>
                 </div>
               </div>
@@ -139,11 +144,11 @@ export function CampaignConfigurator({
                 </div>
                 <div className="grid grid-cols-2 gap-4 pt-4">
                   <div className="text-center">
-                    <p className="text-xs opacity-75">COST PER PROSPECT</p>
+                    <p className="text-xs opacity-75">COST PER UNIT</p>
                     <p className="text-lg font-semibold">${(totalUsd / prospects).toFixed(3)}</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-xs opacity-75">COST PER EMAIL</p>
+                    <p className="text-xs opacity-75">COST PER ACTION</p>
                     <p className="text-lg font-semibold">${(totalUsd / (prospects * emailsPerProspect)).toFixed(3)}</p>
                   </div>
                 </div>
@@ -167,7 +172,7 @@ export function CampaignConfigurator({
           className="px-6 py-3 rounded-2xl border-gray-300 hover:bg-gray-50"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Workflows
+          Back to Use Cases
         </Button>
         
         <Button 

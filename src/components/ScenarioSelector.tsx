@@ -52,8 +52,8 @@ export function ScenarioSelector({ workflows, selectedWorkflow, onSelectWorkflow
   return (
     <div className="space-y-6">
       <div className="text-center space-y-2">
-        <h2 className="text-3xl font-bold text-black">Choose Your SDR Workflow</h2>
-        <p className="text-gray-600 text-lg">Select the type of outreach campaign you want to run</p>
+        <h2 className="text-3xl font-bold text-black">Choose Your Workflow</h2>
+        <p className="text-gray-600 text-lg">Select the workflow that best fits your automation needs</p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">

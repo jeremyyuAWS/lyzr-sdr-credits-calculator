@@ -2,89 +2,308 @@
   "pricing": {
     "credit_per_usd": 0.02
   },
-  "workflows": [
+  "use_cases": [
     {
-      "id": "basic-sdr",
-      "name": "Basic SDR (Email Only)",
-      "description": "Simple email outreach with basic personalization",
-      "actions": [
+      "id": "ai-sdr",
+      "name": "AI SDR",
+      "description": "Automate sales outreach and lead generation",
+      "icon": "Users",
+      "color": "blue",
+      "workflows": [
         {
-          "action": "Email Generation",
-          "credits_per_unit": 1,
-          "description": "AI-generated personalized emails"
+          "id": "basic-sdr",
+          "name": "Basic SDR (Email Only)",
+          "description": "Simple email outreach with basic personalization",
+          "actions": [
+            {
+              "action": "Email Generation",
+              "credits_per_unit": 1,
+              "description": "AI-generated personalized emails"
+            },
+            {
+              "action": "Follow-up Email",
+              "credits_per_unit": 1,
+              "description": "Automated follow-up sequences"
+            }
+          ]
         },
         {
-          "action": "Follow-up Email",
-          "credits_per_unit": 1,
-          "description": "Automated follow-up sequences"
+          "id": "standard-sdr",
+          "name": "Standard SDR (Email + Research)",
+          "description": "Enhanced outreach with prospect research and personalization",
+          "actions": [
+            {
+              "action": "AI Research",
+              "credits_per_unit": 2,
+              "description": "Deep prospect and company research"
+            },
+            {
+              "action": "Email Generation",
+              "credits_per_unit": 1,
+              "description": "Research-informed personalized emails"
+            },
+            {
+              "action": "Follow-up Email",
+              "credits_per_unit": 1,
+              "description": "Contextual follow-up sequences"
+            }
+          ]
+        },
+        {
+          "id": "premium-sdr",
+          "name": "Premium SDR (Full Service)",
+          "description": "Complete outreach with research, emails, and voice calls",
+          "actions": [
+            {
+              "action": "AI Research",
+              "credits_per_unit": 2,
+              "description": "Comprehensive prospect intelligence"
+            },
+            {
+              "action": "Email Generation",
+              "credits_per_unit": 1,
+              "description": "Highly personalized email content"
+            },
+            {
+              "action": "Voice Call Script",
+              "credits_per_unit": 3,
+              "description": "AI-generated call scripts and talking points"
+            },
+            {
+              "action": "Follow-up Sequence",
+              "credits_per_unit": 2,
+              "description": "Multi-channel follow-up coordination"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "standard-sdr",
-      "name": "Standard SDR (Email + Research)",
-      "description": "Enhanced outreach with prospect research and personalization",
-      "actions": [
+      "id": "ai-marketer",
+      "name": "AI Marketer",
+      "description": "Create campaigns, content, and marketing automation",
+      "icon": "Megaphone",
+      "color": "green",
+      "workflows": [
         {
-          "action": "AI Research",
-          "credits_per_unit": 2,
-          "description": "Deep prospect and company research"
+          "id": "content-creation",
+          "name": "Content Creation Suite",
+          "description": "Generate blog posts, social media, and marketing copy",
+          "actions": [
+            {
+              "action": "Blog Post Generation",
+              "credits_per_unit": 5,
+              "description": "Full-length SEO-optimized blog posts"
+            },
+            {
+              "action": "Social Media Posts",
+              "credits_per_unit": 1,
+              "description": "Platform-specific social content"
+            },
+            {
+              "action": "Meta Descriptions",
+              "credits_per_unit": 1,
+              "description": "SEO meta descriptions and titles"
+            }
+          ]
         },
         {
-          "action": "Email Generation",
-          "credits_per_unit": 1,
-          "description": "Research-informed personalized emails"
-        },
-        {
-          "action": "Follow-up Email",
-          "credits_per_unit": 1,
-          "description": "Contextual follow-up sequences"
+          "id": "campaign-automation",
+          "name": "Campaign Automation",
+          "description": "Multi-channel marketing campaign orchestration",
+          "actions": [
+            {
+              "action": "Audience Research",
+              "credits_per_unit": 3,
+              "description": "Target audience analysis and segmentation"
+            },
+            {
+              "action": "Email Campaign",
+              "credits_per_unit": 2,
+              "description": "Personalized email marketing campaigns"
+            },
+            {
+              "action": "Ad Copy Generation",
+              "credits_per_unit": 2,
+              "description": "Platform-specific advertising copy"
+            },
+            {
+              "action": "Performance Analysis",
+              "credits_per_unit": 1,
+              "description": "Campaign performance insights"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "premium-sdr",
-      "name": "Premium SDR (Full Service)",
-      "description": "Complete outreach with research, emails, and voice calls",
-      "actions": [
+      "id": "ai-customer-service",
+      "name": "AI Customer Service",
+      "description": "Automate support tickets and customer interactions",
+      "icon": "Headphones",
+      "color": "purple",
+      "workflows": [
         {
-          "action": "AI Research",
-          "credits_per_unit": 2,
-          "description": "Comprehensive prospect intelligence"
+          "id": "basic-support",
+          "name": "Basic Support Bot",
+          "description": "Handle common queries and ticket routing",
+          "actions": [
+            {
+              "action": "Query Processing",
+              "credits_per_unit": 1,
+              "description": "Understand and categorize customer queries"
+            },
+            {
+              "action": "Response Generation",
+              "credits_per_unit": 2,
+              "description": "Generate personalized support responses"
+            },
+            {
+              "action": "Ticket Routing",
+              "credits_per_unit": 1,
+              "description": "Smart routing to appropriate agents"
+            }
+          ]
         },
         {
-          "action": "Email Generation",
-          "credits_per_unit": 1,
-          "description": "Highly personalized email content"
-        },
-        {
-          "action": "Voice Call Script",
-          "credits_per_unit": 3,
-          "description": "AI-generated call scripts and talking points"
-        },
-        {
-          "action": "Follow-up Sequence",
-          "credits_per_unit": 2,
-          "description": "Multi-channel follow-up coordination"
+          "id": "advanced-support",
+          "name": "Advanced Support AI",
+          "description": "Handle complex issues with knowledge base integration",
+          "actions": [
+            {
+              "action": "Knowledge Search",
+              "credits_per_unit": 2,
+              "description": "Search internal knowledge bases"
+            },
+            {
+              "action": "Issue Analysis",
+              "credits_per_unit": 3,
+              "description": "Deep analysis of complex customer issues"
+            },
+            {
+              "action": "Solution Generation",
+              "credits_per_unit": 4,
+              "description": "Generate step-by-step solutions"
+            },
+            {
+              "action": "Follow-up Scheduling",
+              "credits_per_unit": 1,
+              "description": "Automated follow-up coordination"
+            }
+          ]
         }
       ]
-    }
-  ],
-  "scenarios": [
-    {
-      "name": "Small Campaign",
-      "prospects": 100,
-      "emails_per_prospect": 2
     },
     {
-      "name": "Medium Campaign",
-      "prospects": 500,
-      "emails_per_prospect": 3
+      "id": "ai-knowledge-search",
+      "name": "AI Knowledge Search",
+      "description": "Intelligent document and data discovery",
+      "icon": "Search",
+      "color": "orange",
+      "workflows": [
+        {
+          "id": "document-search",
+          "name": "Document Intelligence",
+          "description": "Search and analyze internal documents",
+          "actions": [
+            {
+              "action": "Document Indexing",
+              "credits_per_unit": 3,
+              "description": "AI-powered document analysis and indexing"
+            },
+            {
+              "action": "Semantic Search",
+              "credits_per_unit": 2,
+              "description": "Context-aware search queries"
+            },
+            {
+              "action": "Answer Synthesis",
+              "credits_per_unit": 4,
+              "description": "Generate comprehensive answers from multiple sources"
+            }
+          ]
+        },
+        {
+          "id": "data-insights",
+          "name": "Data Insights Engine",
+          "description": "Extract insights from structured and unstructured data",
+          "actions": [
+            {
+              "action": "Data Analysis",
+              "credits_per_unit": 5,
+              "description": "Advanced data pattern recognition"
+            },
+            {
+              "action": "Insight Generation",
+              "credits_per_unit": 3,
+              "description": "Generate actionable business insights"
+            },
+            {
+              "action": "Report Creation",
+              "credits_per_unit": 4,
+              "description": "Automated insight reports"
+            }
+          ]
+        }
+      ]
     },
     {
-      "name": "Large Campaign",
-      "prospects": 1000,
-      "emails_per_prospect": 4
+      "id": "ai-hr-support",
+      "name": "AI HR Support",
+      "description": "Streamline HR processes and employee assistance",
+      "icon": "UserCheck",
+      "color": "pink",
+      "workflows": [
+        {
+          "id": "employee-assistance",
+          "name": "Employee Assistant",
+          "description": "Handle HR queries and policy questions",
+          "actions": [
+            {
+              "action": "Policy Lookup",
+              "credits_per_unit": 1,
+              "description": "Search HR policies and procedures"
+            },
+            {
+              "action": "Query Response",
+              "credits_per_unit": 2,
+              "description": "Generate personalized HR responses"
+            },
+            {
+              "action": "Form Assistance",
+              "credits_per_unit": 1,
+              "description": "Help with HR form completion"
+            }
+          ]
+        },
+        {
+          "id": "recruitment-automation",
+          "name": "Recruitment Automation",
+          "description": "Automate candidate screening and communication",
+          "actions": [
+            {
+              "action": "Resume Screening",
+              "credits_per_unit": 3,
+              "description": "AI-powered resume analysis and ranking"
+            },
+            {
+              "action": "Candidate Outreach",
+              "credits_per_unit": 2,
+              "description": "Personalized candidate communication"
+            },
+            {
+              "action": "Interview Scheduling",
+              "credits_per_unit": 1,
+              "description": "Automated interview coordination"
+            },
+            {
+              "action": "Feedback Generation",
+              "credits_per_unit": 2,
+              "description": "Generate candidate feedback reports"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

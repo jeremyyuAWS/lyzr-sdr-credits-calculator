@@ -21,8 +21,12 @@ export function CreditBreakdownTable({ actions, prospects, emailsPerProspect, cr
   const calculateActionCredits = (action: Action) => {
     let multiplier = prospects;
     
-    // Email-related actions are multiplied by emails per prospect
-    if (action.action.toLowerCase().includes('email') || action.action.toLowerCase().includes('follow-up')) {
+    // Certain actions are multiplied by interactions per unit
+    if (action.action.toLowerCase().includes('email') || 
+        action.action.toLowerCase().includes('follow-up') ||
+        action.action.toLowerCase().includes('social media') ||
+        action.action.toLowerCase().includes('query') ||
+        action.action.toLowerCase().includes('response')) {
       multiplier = prospects * emailsPerProspect;
     }
     
@@ -74,9 +78,11 @@ export function CreditBreakdownTable({ actions, prospects, emailsPerProspect, cr
                   </div>
                   <p className="text-sm text-gray-600">
                     {action.credits_per_unit} credits × {
-                      action.action.toLowerCase().includes('email') || action.action.toLowerCase().includes('follow-up')
-                        ? `${prospects} prospects × ${emailsPerProspect} emails`
-                        : `${prospects} prospects`
+                      action.action.toLowerCase().includes('email') || action.action.toLowerCase().includes('follow-up') ||
+                      action.action.toLowerCase().includes('social media') || action.action.toLowerCase().includes('query') ||
+                      action.action.toLowerCase().includes('response')
+                        ? `${prospects} units × ${emailsPerProspect} actions`
+                        : `${prospects} units`
                     }
                   </p>
                 </div>
