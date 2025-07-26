@@ -101,16 +101,24 @@ export function UseCaseSelector({ useCases, selectedUseCase, onSelectUseCase, on
                 </div>
                 <div>
                   <CardTitle className="text-xl text-black">{useCase.name}</CardTitle>
-                  <Badge variant="outline" className="mt-2">
-                    {useCase.workflows.length} workflow{useCase.workflows.length !== 1 ? 's' : ''}
-                  </Badge>
                 </div>
               </div>
             </CardHeader>
             <CardContent>
-              <CardDescription className="text-gray-600 text-center leading-relaxed">
+              <CardDescription className="text-gray-600 text-center leading-relaxed mb-4">
                 {useCase.description}
               </CardDescription>
+              <div className="space-y-2">
+                <p className="text-sm font-medium text-gray-700 text-center">Available Workflows:</p>
+                <ul className="space-y-1 text-sm text-gray-600">
+                  {useCase.workflows.map((workflow, index) => (
+                    <li key={workflow.id} className="flex items-start">
+                      <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                      <span className="leading-relaxed">{workflow.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </CardContent>
           </Card>
         ))}
