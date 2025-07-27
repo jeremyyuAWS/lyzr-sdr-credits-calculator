@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, ArrowLeft, Download } from 'lucide-react';
+import { CostVisualization } from './CostVisualization';
+import { exportQuote } from '@/utils/exportQuote';
 
 interface CostSummaryProps {
   useCaseName: string;
@@ -11,12 +13,44 @@ interface CostSummaryProps {
   emailsPerProspect: number;
   totalCredits: number;
   totalUsd: number;
+  actions: Array<{
+    action: string;
+    credits_per_unit: number;
+    description: string;
+  }>;
+  creditPerUsd: number;
+  useCaseId: string;
   onBack: () => void;
 }
 
-export function CostSummary({ useCaseName, workflowName, prospects, emailsPerProspect, totalCredits, totalUsd, onBack }: CostSummaryProps) {
+export function CostSummary({ 
+  useCaseName, 
+  workflowName, 
+  prospects, 
+  emailsPerProspect, 
+  totalCredits, 
+  totalUsd, 
+  actions,
+  creditPerUsd,
+  useCaseId,
+  onBack 
+}: CostSummaryProps) {
   const costPerProspect = totalUsd / prospects;
   const totalEmails = prospects * emailsPerProspect;
+
+  const handleExportQuote = () => {
+    exportQuote({
+      useCaseName,
+      workflowName,
+      prospects,
+      emailsPerProspect,
+      actions,
+      totalCredits,
+      totalUsd,
+      creditPerUsd,
+      useCaseId
+    });
+  };
 
   return (
     <div className="space-y-6">
@@ -81,6 +115,13 @@ export function CostSummary({ useCaseName, workflowName, prospects, emailsPerPro
         </CardContent>
       </Card>
 
+      <CostVisualization
+        actions={actions}
+        prospects={prospects}
+        emailsPerProspect={emailsPerProspect}
+        useCaseId={useCaseId}
+      />
+
       <Card className="rounded-2xl bg-blue-50 border-blue-200">
         <CardContent className="pt-6">
           <div className="text-center space-y-3">
@@ -110,6 +151,7 @@ export function CostSummary({ useCaseName, workflowName, prospects, emailsPerPro
         <div className="space-x-3">
           <Button 
             variant="outline"
+            onClick={handleExportQuote}
             className="px-6 py-3 rounded-2xl border-gray-300 hover:bg-gray-50"
           >
             <Download className="w-4 h-4 mr-2" />

@@ -178,6 +178,9 @@ function App() {
             emailsPerProspect={emailsPerProspect}
             totalCredits={totalCredits}
             totalUsd={totalUsd}
+            actions={selectedWorkflow.actions}
+            creditPerUsd={creditsData.pricing.credit_per_usd}
+            useCaseId={selectedUseCaseId}
             onBack={handleBack}
           />
         )}
