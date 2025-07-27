@@ -112,9 +112,9 @@ export function exportQuote(data: ExportData) {
 
   // Overview details in a nice box
   doc.setFillColor(248, 250, 252);
-  doc.rect(20, yPosition - 5, pageWidth - 40, 35, 'F');
+  doc.rect(20, yPosition - 5, pageWidth - 40, 40, 'F');
   doc.setDrawColor(226, 232, 240);
-  doc.rect(20, yPosition - 5, pageWidth - 40, 35, 'S');
+  doc.rect(20, yPosition - 5, pageWidth - 40, 40, 'S');
 
   doc.setFontSize(11);
   doc.setFont('helvetica', 'normal');
@@ -123,23 +123,23 @@ export function exportQuote(data: ExportData) {
   doc.text('Campaign Type:', 25, yPosition + 5);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(...primaryColor);
-  doc.text(`${useCaseName} - ${workflowName}`, 65, yPosition + 5);
+  doc.text(`${useCaseName} - ${workflowName}`, 70, yPosition + 5);
 
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(...secondaryColor);
   doc.text(`Target ${unitLabels.unit1}:`, 25, yPosition + 15);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(...primaryColor);
-  doc.text(prospects.toLocaleString(), 65, yPosition + 15);
+  doc.text(prospects.toLocaleString(), 70, yPosition + 15);
 
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(...secondaryColor);
   doc.text(`${unitLabels.unit2} per ${unitLabels.unit1.slice(0, -1)}:`, 25, yPosition + 25);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(...primaryColor);
-  doc.text(emailsPerProspect.toString(), 65, yPosition + 25);
+  doc.text(emailsPerProspect.toString(), 70, yPosition + 25);
 
-  yPosition += 50;
+  yPosition += 55;
 
   // Cost Breakdown Table
   doc.setTextColor(...primaryColor);
@@ -229,34 +229,43 @@ export function exportQuote(data: ExportData) {
   yPosition += 15;
 
   doc.setFillColor(248, 250, 252);
-  doc.rect(20, yPosition - 5, pageWidth - 40, 25, 'F');
+  doc.rect(20, yPosition - 5, pageWidth - 40, 35, 'F');
   doc.setDrawColor(226, 232, 240);
-  doc.rect(20, yPosition - 5, pageWidth - 40, 25, 'S');
+  doc.rect(20, yPosition - 5, pageWidth - 40, 35, 'S');
 
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(64, 64, 64);
   
+  // Left column
   doc.text(`Cost per ${unitLabels.unit1.slice(0, -1)}:`, 25, yPosition + 5);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(0, 0, 0);
-  doc.text(`$${costPerProspect.toFixed(3)}`, 90, yPosition + 5);
+  doc.text(`$${costPerProspect.toFixed(3)}`, 100, yPosition + 5);
 
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(64, 64, 64);
   doc.text('Cost per action:', 25, yPosition + 15);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(0, 0, 0);
-  doc.text(`$${costPerAction.toFixed(3)}`, 90, yPosition + 15);
+  doc.text(`$${costPerAction.toFixed(3)}`, 100, yPosition + 15);
+
+  // Right column
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(64, 64, 64);
+  doc.text('Credit rate:', pageWidth / 2 + 20, yPosition + 5);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(0, 0, 0);
+  doc.text(`$${creditPerUsd.toFixed(3)} per credit`, pageWidth / 2 + 20, yPosition + 15);
 
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(64, 64, 64);
-  doc.text('Credit rate:', pageWidth / 2 + 10, yPosition + 5);
+  doc.text('Total actions:', pageWidth / 2 + 20, yPosition + 25);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(0, 0, 0);
-  doc.text(`$${creditPerUsd} per credit`, pageWidth / 2 + 10, yPosition + 15);
+  doc.text((prospects * emailsPerProspect).toLocaleString(), pageWidth / 2 + 85, yPosition + 25);
 
-  yPosition += 35;
+  yPosition += 45;
 
   // Key Assumptions
   doc.setTextColor(...primaryColor);
