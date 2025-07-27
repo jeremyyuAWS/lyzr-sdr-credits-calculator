@@ -15,9 +15,29 @@ interface CreditBreakdownTableProps {
   prospects: number;
   emailsPerProspect: number;
   creditPerUsd: number;
+  useCaseId: string;
 }
 
-export function CreditBreakdownTable({ actions, prospects, emailsPerProspect, creditPerUsd }: CreditBreakdownTableProps) {
+export function CreditBreakdownTable({ actions, prospects, emailsPerProspect, creditPerUsd, useCaseId }: CreditBreakdownTableProps) {
+  const getUnitLabels = (useCaseId: string) => {
+    switch (useCaseId) {
+      case 'ai-sdr':
+        return { unit1: 'prospects', unit2: 'emails' };
+      case 'ai-marketer':
+        return { unit1: 'blog posts', unit2: 'social posts' };
+      case 'ai-customer-service':
+        return { unit1: 'tickets', unit2: 'follow-ups' };
+      case 'ai-knowledge-search':
+        return { unit1: 'searches', unit2: 'documents' };
+      case 'ai-hr-support':
+        return { unit1: 'queries', unit2: 'follow-ups' };
+      default:
+        return { unit1: 'units', unit2: 'actions' };
+    }
+  };
+
+  const unitLabels = getUnitLabels(useCaseId);
+
   const calculateActionCredits = (action: Action) => {
     let multiplier = prospects;
     
@@ -81,8 +101,8 @@ export function CreditBreakdownTable({ actions, prospects, emailsPerProspect, cr
                       action.action.toLowerCase().includes('email') || action.action.toLowerCase().includes('follow-up') ||
                       action.action.toLowerCase().includes('social media') || action.action.toLowerCase().includes('query') ||
                       action.action.toLowerCase().includes('response')
-                        ? `${prospects} units × ${emailsPerProspect} actions`
-                        : `${prospects} units`
+                        ? `${prospects} ${unitLabels.unit1} × ${emailsPerProspect} ${unitLabels.unit2}`
+                        : `${prospects} ${unitLabels.unit1}`
                     }
                   </p>
                 </div>

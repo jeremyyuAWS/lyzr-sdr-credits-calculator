@@ -162,6 +162,7 @@ function App() {
             prospects={prospects}
             emailsPerProspect={emailsPerProspect}
             creditPerUsd={creditsData.pricing.credit_per_usd}
+            useCaseId={selectedUseCaseId}
             onProspectsChange={(value) => setProspects(value[0])}
             onEmailsChange={(value) => setEmailsPerProspect(value[0])}
             onBack={handleBack}
