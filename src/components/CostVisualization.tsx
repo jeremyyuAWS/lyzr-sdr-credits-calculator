@@ -133,31 +133,30 @@ export function CostVisualization({ actions, prospects, emailsPerProspect, useCa
         <CardContent>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart 
-              data={chartData} 
-              layout="horizontal"
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+              data={chartData}
+              margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis 
-                type="number" 
-                tick={{ fontSize: 12 }}
-                tickFormatter={(value) => value.toLocaleString()}
-              />
-              <YAxis 
-                dataKey="name" 
-                type="category" 
-                width={100}
-                tick={{ fontSize: 12 }}
+                dataKey="name"
+                angle={-45}
+                textAnchor="end"
+                height={80}
+                tick={{ fontSize: 10 }}
                 tickFormatter={(value) => {
                   // Truncate long action names for better display
-                  return value.length > 15 ? value.substring(0, 15) + '...' : value;
+                  return value.length > 12 ? value.substring(0, 12) + '...' : value;
                 }}
+              />
+              <YAxis 
+                tick={{ fontSize: 12 }}
+                tickFormatter={(value) => value.toLocaleString()}
               />
               <Tooltip content={<BarTooltip />} />
               <Bar 
                 dataKey="credits" 
                 fill="#0088FE" 
-                radius={[0, 4, 4, 0]}
+                radius={[4, 4, 0, 0]}
                 name="Credits"
               />
             </BarChart>
