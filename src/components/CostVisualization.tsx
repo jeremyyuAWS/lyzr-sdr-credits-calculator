@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { BarChart3, PieChart as PieChartIcon } from 'lucide-react';
 
 interface Action {
@@ -47,7 +47,7 @@ export function CostVisualization({ actions, prospects, emailsPerProspect, useCa
     item.percentage = Math.round((item.credits / totalCredits) * 100);
   });
 
-  const CustomTooltip = ({ active, payload }: any) => {
+  const PieTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
@@ -62,6 +62,21 @@ export function CostVisualization({ actions, prospects, emailsPerProspect, useCa
     return null;
   };
 
+  const BarTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      const credits = payload[0].value;
+      const percentage = Math.round((credits / totalCredits) * 100);
+      return (
+        <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
+          <p className="font-medium text-black">{label}</p>
+          <p className="text-sm text-gray-600">
+            {credits.toLocaleString()} credits ({percentage}%)
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
   return (
     <div className="grid gap-6 lg:grid-cols-2">
       <Card className="rounded-2xl shadow-lg border-0">
@@ -88,7 +103,7 @@ export function CostVisualization({ actions, prospects, emailsPerProspect, useCa
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
-              <Tooltip content={<CustomTooltip />} />
+              <Tooltip content={<PieTooltip />} />
             </PieChart>
           </ResponsiveContainer>
           <div className="mt-4 space-y-2">
@@ -117,17 +132,34 @@ export function CostVisualization({ actions, prospects, emailsPerProspect, useCa
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={chartData} layout="horizontal">
+            <BarChart 
+              data={chartData} 
+              layout="horizontal"
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis type="number" />
+              <XAxis 
+                type="number" 
+                tick={{ fontSize: 12 }}
+                tickFormatter={(value) => value.toLocaleString()}
+              />
               <YAxis 
                 dataKey="name" 
                 type="category" 
-                width={120}
+                width={100}
                 tick={{ fontSize: 12 }}
+                tickFormatter={(value) => {
+                  // Truncate long action names for better display
+                  return value.length > 15 ? value.substring(0, 15) + '...' : value;
+                }}
               />
-              <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey="credits" fill="#0088FE" radius={[0, 4, 4, 0]} />
+              <Tooltip content={<BarTooltip />} />
+              <Bar 
+                dataKey="credits" 
+                fill="#0088FE" 
+                radius={[0, 4, 4, 0]}
+                name="Credits"
+              />
             </BarChart>
           </ResponsiveContainer>
         </CardContent>
