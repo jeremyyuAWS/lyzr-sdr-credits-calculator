@@ -235,26 +235,26 @@ export function exportQuote(data: ExportData) {
 
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  doc.setTextColor(...secondaryColor);
+  doc.setTextColor(64, 64, 64);
   
   doc.text(`Cost per ${unitLabels.unit1.slice(0, -1)}:`, 25, yPosition + 5);
   doc.setFont('helvetica', 'bold');
-  doc.setTextColor(...primaryColor);
-  doc.text(`$${costPerProspect.toFixed(3)}`, 80, yPosition + 5);
+  doc.setTextColor(0, 0, 0);
+  doc.text(`$${costPerProspect.toFixed(3)}`, 90, yPosition + 5);
 
   doc.setFont('helvetica', 'normal');
-  doc.setTextColor(...secondaryColor);
+  doc.setTextColor(64, 64, 64);
   doc.text('Cost per action:', 25, yPosition + 15);
   doc.setFont('helvetica', 'bold');
-  doc.setTextColor(...primaryColor);
-  doc.text(`$${costPerAction.toFixed(3)}`, 80, yPosition + 15);
+  doc.setTextColor(0, 0, 0);
+  doc.text(`$${costPerAction.toFixed(3)}`, 90, yPosition + 15);
 
   doc.setFont('helvetica', 'normal');
-  doc.setTextColor(...secondaryColor);
-  doc.text('Credit rate:', pageWidth - 80, yPosition + 5);
+  doc.setTextColor(64, 64, 64);
+  doc.text('Credit rate:', pageWidth / 2 + 10, yPosition + 5);
   doc.setFont('helvetica', 'bold');
-  doc.setTextColor(...primaryColor);
-  doc.text(`$${creditPerUsd} per credit`, pageWidth - 25, yPosition + 5, { align: 'right' });
+  doc.setTextColor(0, 0, 0);
+  doc.text(`$${creditPerUsd} per credit`, pageWidth / 2 + 10, yPosition + 15);
 
   yPosition += 35;
 
